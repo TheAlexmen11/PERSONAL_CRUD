@@ -3,7 +3,7 @@
         public function get_producto(){
             $conectar = parent::conexion(); //declara una variable conectar
             parent::set_names(); //se llama parent para no tener problema con las Ñ o las tildes 
-            $sql="SELECT * FROM tm_productos WHERE est=1"; //query la consulta que se va hacer
+            $sql="SELECT * FROM tm_producto WHERE est='1'"; //query la consulta que se va hacer
             $sql=$conectar->prepare($sql);  //a la variable sql llamo a conectar y preparo el sql para ejecutarse
             $sql->execute(); //despues con esto lo ejecutamos
             return $resultado=$sql->fetchAll(); //retornamos lo que capturamos en una variable
