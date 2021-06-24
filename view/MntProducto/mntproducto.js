@@ -3,7 +3,7 @@ var tabla;
 function init(){
     $("#producto_form").on("submit",function(e){
         guardaryeditar(e);	
-    });    
+    });
 }
 
 $(document).ready(function(){ 
@@ -80,8 +80,16 @@ function guardaryeditar(e){
         }
     });
 }
+
 function editar(prod_id){
-    console.log(prod_id);
+    $.post("../../controller/producto.php?op=mostrar",{prod_id:prod_id},function (data) {
+        data = JSON.parse(data);
+        $('#prod_id').val(data.prod_id);
+        $('#prod_nom').val(data.prod_nom);
+        $('#prod_desc').val(data.prod_desc);
+    });
+    $('#mdltitulo').html('Editar Registro');
+    $('#modalmantenimiento').modal('show');
 }
 
 function eliminar(prod_id){
@@ -110,8 +118,11 @@ function eliminar(prod_id){
         }
     })
 }
+
 $(document).on("click","#btnnuevo", function(){
+    $('#prod_id').val('');
     $('#mdltitulo').html('Nuevo Registro');
     $('#modalmantenimiento').modal('show');
 });
+
 init();
